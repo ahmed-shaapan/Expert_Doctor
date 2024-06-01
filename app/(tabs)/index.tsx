@@ -1,17 +1,23 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import { Image, StyleSheet, Platform, TextInput } from 'react-native';
 
 import { HelloWave } from '@/components/HelloWave';
 import ParallaxScrollView from '@/components/ParallaxScrollView';
 import { ThemedText } from '@/components/ThemedText';
 import { ThemedView } from '@/components/ThemedView';
+import { SwitchButton } from '@/components/SwitchButton'
+import { useState } from 'react';
+import SelectableOptions from '@/components/SelectItems'
+
+
 
 export default function HomeScreen() {
+  const[email, setEmail]=useState('')
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
       headerImage={
         <Image
-          source={require('@/assets/images/partial-react-logo.png')}
+          source={require('@/assets/images/Ducktor Duck Doctor Sticker.png')}
           style={styles.reactLogo}
         />
       }>
@@ -20,31 +26,45 @@ export default function HomeScreen() {
         <HelloWave />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
+        <ThemedText type="subtitle">Fever</ThemedText>
+        <SwitchButton txt1={'Yes'} txt2={'No'} />
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
+        <ThemedText type="subtitle">Cough</ThemedText>
+        <SwitchButton txt1={'Yes'} txt2={'No'}/>
       </ThemedView>
       <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
+        <ThemedText type="subtitle">Fatigue</ThemedText>
+        <SwitchButton txt1={'Yes'} txt2={'No'}/>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Difficulty Breathing</ThemedText>
+        <SwitchButton txt1={'Yes'} txt2={'No'}/>
+        
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Age</ThemedText>
+        <TextInput
+          placeholder="Age"
+          value={email}
+          onChangeText={val => setEmail(val)}
+          style={{
+            backgroundColor: "white",
+            borderRadius: 20,
+            height: 40,
+            paddingLeft: 20,
+            borderWidth:0.2
+          }}
+          autoCapitalize="none"
+        />
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Gender</ThemedText>
+        <SwitchButton txt1={'Male'} txt2={'Female'}/>
+      </ThemedView>
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Blood Pressure</ThemedText>
+        <SelectableOptions options={['Low', 'Normal', 'Heigh']}/>
       </ThemedView>
     </ParallaxScrollView>
   );
@@ -61,8 +81,8 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   reactLogo: {
-    height: 178,
-    width: 290,
+    height: 300,
+    width: 360,
     bottom: 0,
     left: 0,
     position: 'absolute',
