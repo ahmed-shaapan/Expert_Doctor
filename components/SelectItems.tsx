@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 
 interface SelectableOptionsProps {
   options: string[];
-  onOptionSelect?: (option: string) => void;
+  onOptionSelect: (option: string) => void;
 }
 
 const SelectableOptions: React.FC<SelectableOptionsProps> = ({ options, onOptionSelect }) => {
@@ -11,9 +11,7 @@ const SelectableOptions: React.FC<SelectableOptionsProps> = ({ options, onOption
 
   const handleSelection = (option: string) => {
     setSelectedOption(option);
-    if (onOptionSelect) {
-      onOptionSelect(option);
-    }
+    onOptionSelect(option);
   };
 
   return (
@@ -45,11 +43,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     padding: 10,
     margin: 5,
-    borderRadius:15,
+    borderRadius: 15,
   },
   selectedOption: {
     backgroundColor: '#00bfff',
-    borderRadius:15,
+    borderRadius: 15,
   },
   optionText: {
     fontSize: 16,
